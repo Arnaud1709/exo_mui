@@ -1,15 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import '../index.css'; 
 import {createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
-import { Paper } from '@mui/material';
+import { Paper, Switch } from '@mui/material';
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
+
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 90 },
@@ -41,6 +37,18 @@ const columns = [
     valueGetter: (params) =>
       `${params.row.firstName || ''} ${params.row.lastName || ''}`,
   },
+  {
+    field: 'desceased',
+    headerName: 'Desceased ?',
+    width: 120,
+    editable: true,
+  },
+  {
+    field: 'ennemy',
+    headerName: 'Ennemy',
+    width: 160,
+    editable: true,
+  }
 ];
 
 
@@ -58,11 +66,20 @@ const rows = [
 ];
 
 export default function Grid() {
+
+  const[darkMode, setDarkMode] = useState(false);
+
+  const theme = createTheme({
+    palette: {
+      mode: darkMode ? 'dark' : "light",
+    },
+  });
+
   return (
+    <ThemeProvider theme={theme} size={{ width:"70%"}}>
       <Paper>
-        <div className ='grid' theme={darkTheme}>
+        <div className ='grid'>
           <DataGrid
-            
             rows={rows}
             columns={columns}
             pageSize={5}
@@ -71,6 +88,8 @@ export default function Grid() {
             disableSelectionOnClick
           />
         </div>
+        <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)}></Switch>
       </Paper>
+    </ThemeProvider>
   );
 }

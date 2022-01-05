@@ -147,9 +147,9 @@ export default function EditorMenu() {
   const [darkMode, setDarkMode] = useState(false);
   const theme = createTheme({
     palette: {
-      type: darkMode ? "dark" : "light",
+      mode: darkMode ? "dark" : "light",
     }
-  })
+  });
 
   return (
     <ThemeProvider theme={theme}>
