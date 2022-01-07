@@ -65,20 +65,12 @@ const rows = [
   { id: 9, lastName: 'Joestar', firstName: '???' , age: null },
 ];
 
-export default function Grid() {
-
-  const[darkMode, setDarkMode] = useState(false);
-
-  const theme = createTheme({
-    palette: {
-      mode: darkMode ? 'dark' : "light",
-    },
-  });
+const Grid = (props) => {
 
   return (
-    <ThemeProvider theme={theme} size={{ width:"70%"}}>
+    <ThemeProvider theme={props.theme} size={{ width:"70%"}}>
       <Paper>
-        <div className ='grid'>
+        <div className ='grid' style={{backgroundColor: '000'}}>
           <DataGrid
             rows={rows}
             columns={columns}
@@ -88,8 +80,9 @@ export default function Grid() {
             disableSelectionOnClick
           />
         </div>
-        <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)}></Switch>
       </Paper>
     </ThemeProvider>
   );
 }
+
+export default Grid

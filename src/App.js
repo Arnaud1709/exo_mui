@@ -1,7 +1,22 @@
-import * as React from 'react';
-import ReactDOM from 'react-dom';
-import Button from '@mui/material/Button';
-import EditorMenu from './theme/editor';
-import Grid from './theme/grid';
-import Container from '@mui/material/Container';
+import React, {useState} from 'react';
+import { createTheme } from '@mui/material/styles';
+import Grid from './theme/Grid';
+import EditorMenu from './theme/Editor';
+
+export default function App(){
+    const [darkMode, setDarkMode] = useState(false);
+    const theme = createTheme({
+        palette: {
+        mode: darkMode ? "dark" : "light",
+        }
+    });
+
+    return(
+        <>
+          <Grid theme={theme} setDarkMode={setDarkMode} darkMode={darkMode}/>
+          <EditorMenu theme={theme} setDarkMode={setDarkMode} darkMode={darkMode}/>
+        </>
+    )
+        
+}
 

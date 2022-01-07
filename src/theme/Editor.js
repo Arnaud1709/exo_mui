@@ -120,8 +120,9 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-export default function EditorMenu() {
 
+
+const EditorMenu = (props) => {
 
   const drawer = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -144,15 +145,8 @@ export default function EditorMenu() {
     setAnchorEl(null);
   };
 
-  const [darkMode, setDarkMode] = useState(false);
-  const theme = createTheme({
-    palette: {
-      mode: darkMode ? "dark" : "light",
-    }
-  });
-
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={props.theme}>
       <Paper style={{height: "100vh"}}>
         <Box sx={{ display: 'flex',
         }}>
@@ -207,8 +201,8 @@ export default function EditorMenu() {
                     <MenuItem onClick={handleClose}>My account</MenuItem>
                   </Menu>
                   <FormControlLabel
-                    checked={darkMode}
-                    onChange={() => setDarkMode(!darkMode)}
+                    checked={props.darkMode}
+                    onChange={() => props.setDarkMode(!props.darkMode)}
                     control={<MaterialUISwitch sx={{ m: 1 }}/>}
                     label="Light mode switch"
                   />
@@ -269,3 +263,5 @@ export default function EditorMenu() {
     </ThemeProvider>
   );
 }
+
+export default EditorMenu

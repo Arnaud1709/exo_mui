@@ -1,16 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Grid from './theme/grid';
-import Container from '@mui/material/Container';
-import EditorMenu from './theme/editor';
+import App from './App.js'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Grid />
-    <EditorMenu />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
